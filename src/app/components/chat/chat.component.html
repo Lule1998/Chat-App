@@ -1,0 +1,25 @@
+<div class="chat-container">
+    <div class="messages-container">
+      <div *ngFor="let message of messages" 
+           class="message {{message.type}}-message">
+        {{ message.content }}
+      </div>
+      
+      <div *ngIf="isLoading" class="message bot-message">
+        <span>Razmisljam...</span>
+      </div>
+    </div>
+  
+    <form class="input-container" (submit)="sendMessage()">
+      <input type="text"
+             [value]="inputMessage"
+             (input)="onInputChange($event)"
+             name="message"
+             placeholder="Ukucaj svoju poruku..."
+             [disabled]="isLoading">
+      <button type="submit" 
+              [disabled]="isLoading">
+        Posalji
+      </button>
+    </form>
+  </div>
